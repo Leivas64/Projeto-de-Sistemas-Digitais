@@ -56,8 +56,8 @@ begin
     or_result  <= A or B;
     Bbarra <= not B;
 	 -- Verificação das Flags
-	 add_overflow <= add_cout;
-	 sub_overflow <= (A(3) and Bbarra(3) and not Result(3)) OR (not A(3) and B(3) and Result(3));
+	 add_overflow <= (A(3) and B(3) and NOT Result(3)) or (NOT A(3) AND not_result(3) and Result(3));	--Define o overflow da SOMA
+     sub_overflow <= (A(3) and not_result(3) and NOT Result(3)) OR (NOT A(3) and B(3) and Result(3));	--Define o overflow da SUBTRAÇÃO
 
     -- Seleção da operação
     with AluOp select 
@@ -79,8 +79,8 @@ begin
 	 -- Overflow
 	 with AluOp select
 	 LEDR(2) <= add_overflow     when "100",
-					 sub_overflow     when "101",
-					 '0'        when others;
+				sub_overflow     when "101",
+				'0'              when others;
 	 -- Igual				 
     with AluOp select
 	 LEDR(3) <= cmp_equ     when "111",
