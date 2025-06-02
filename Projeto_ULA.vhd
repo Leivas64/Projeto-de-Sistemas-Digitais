@@ -56,8 +56,8 @@ begin
     or_result  <= A or B;
     Bbarra <= not B;
 	 -- Verificação das Flags
-	 add_overflow <= (A(3) and B(3) and NOT Result(3)) or (NOT A(3) AND not_result(3) and Result(3));	--Define o overflow da SOMA
-     sub_overflow <= (A(3) and not_result(3) and NOT Result(3)) OR (NOT A(3) and B(3) and Result(3));	--Define o overflow da SUBTRAÇÃO
+	 add_overflow <= (A(3) and B(3) and NOT Result(3)) or (NOT A(3) AND NOT B(3) and Result(3));	--Define o overflow da SOMA
+     sub_overflow <= (A(3) and NOT B(3) and NOT Result(3)) OR (NOT A(3) and B(3) and Result(3));	--Define o overflow da SUBTRAÇÃO
 
     -- Seleção da operação
     with AluOp select 
